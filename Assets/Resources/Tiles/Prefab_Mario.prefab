@@ -46,6 +46,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AxeWeapon
   projectile: {fileID: 6685130501241294565, guid: 3116b9b63743dbb498c72600f4e82794, type: 3}
   startAmmo: 0
+--- !u!1 &1858872847461598144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8686127805261781638}
+  - component: {fileID: 4298709813365755450}
+  - component: {fileID: 1771639387716130972}
+  m_Layer: 0
+  m_Name: LaserWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8686127805261781638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858872847461598144}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7653115962617739001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4298709813365755450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858872847461598144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9c87dfff011b74ea20a08de2062c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Weapons.LaserPoolManager
+  laserPrefab: {fileID: 2915949689095971025, guid: 23c0c7d4ac9b9534f84b28ca6eb72ba2, type: 3}
+  laserConfig: {fileID: 11400000, guid: f4671d4554e04684c9c64b0feaeed767, type: 2}
+  container: {fileID: 0}
+  prewarmCount: 5
+  maxSize: 5
+  allowGrowth: 0
+--- !u!114 &1771639387716130972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858872847461598144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d18d8fb3ff6d44697cfcbf6f1ad737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Weapons.LaserWeapon
+  cooldown: 0
+  unlockedFromStart: 0
+  laserPool: {fileID: 4298709813365755450}
+  firePoint: {fileID: 0}
 --- !u!1 &2221766608174617449
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +159,7 @@ Transform:
   - {fileID: 7220613572721953520}
   - {fileID: 4052872072408973675}
   - {fileID: 3963144287572924018}
+  - {fileID: 8686127805261781638}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4374668689619199194

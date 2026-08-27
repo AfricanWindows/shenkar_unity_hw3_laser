@@ -24,7 +24,8 @@ public static class TilePalette
         "Prefab_Bowser",      // 12
         "Prefab_Lightning",   // 13 - exercise 1: +50% speed for 5 seconds
         "Prefab_BlinkTile",   // 14 - exercise 3: appears/disappears every 2 seconds
-        "Prefab_MovingTile"   // 15 - exercise 4: moves 2 tiles right and 2 tiles left
+        "Prefab_MovingTile",  // 15 - exercise 4: moves 2 tiles right and 2 tiles left
+        "Prefab_LaserPowerUp" // 16 - exercise 3 (hw3): unlocks the laser gun
     };
 
     /// <summary>Prefab name for a tile code, or null when the code is not in the palette.</summary>

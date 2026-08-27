@@ -51,8 +51,23 @@ public class WeaponsHandler : MonoBehaviour
 
         ReadSelectionKeys();
 
-        if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && index < weapons.Count)
-            weapons[index].Attack();
+        if (Keyboard.current.leftCtrlKey.wasPressedThisFrame)
+            FireSelected();
+    }
+
+    /// <summary>
+    /// Pulls the trigger on the selected weapon.
+    ///
+    /// It deliberately does NOT ask whether that weapon is unlocked. A weapon that still
+    /// needs its power-up answers with its own message (see Game.Weapons.BaseWeapon), so
+    /// this class never has to learn that a laser, or a power-up, exists.
+    /// </summary>
+    private void FireSelected()
+    {
+        if (index < 0 || index >= weapons.Count)
+            return;
+
+        weapons[index].Attack();
     }
 
     private void ReadSelectionKeys()
