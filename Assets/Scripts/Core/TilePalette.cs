@@ -25,7 +25,8 @@ public static class TilePalette
         "Prefab_Lightning",   // 13 - exercise 1: +50% speed for 5 seconds
         "Prefab_BlinkTile",   // 14 - exercise 3: appears/disappears every 2 seconds
         "Prefab_MovingTile",  // 15 - exercise 4: moves 2 tiles right and 2 tiles left
-        "Prefab_LaserPowerUp" // 16 - exercise 3 (hw3): unlocks the laser gun
+        "Prefab_LaserPowerUp", // 16 - exercise 3 (hw3): unlocks the laser gun
+        "Prefab_FlyingFish"    // 17 - static enemy: hangs in the air, kills Mario on touch
     };
 
     /// <summary>Prefab name for a tile code, or null when the code is not in the palette.</summary>
