@@ -15805,8 +15805,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 320, y: 70}
-  m_SizeDelta: {x: 600, y: 80}
+  m_AnchoredPosition: {x: 412.161, y: 70}
+  m_SizeDelta: {x: 800, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &857551869
 MonoBehaviour:
@@ -17665,6 +17665,10 @@ PrefabInstance:
     - target: {fileID: 616520885454587753, guid: a8a8713806c55f949854c3d910096be2, type: 3}
       propertyPath: m_Name
       value: Prefab_FlyingFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630277353484615959, guid: a8a8713806c55f949854c3d910096be2, type: 3}
+      propertyPath: health
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7692531724374310423, guid: a8a8713806c55f949854c3d910096be2, type: 3}
       propertyPath: m_LocalPosition.x
