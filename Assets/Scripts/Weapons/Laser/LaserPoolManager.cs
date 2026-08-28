@@ -31,12 +31,12 @@ namespace Game.Weapons
 
         [Header("Pool size")]
         [Tooltip("Created during loading, so the first shot costs nothing")]
-        [SerializeField] private int prewarmCount = 10;
+        [SerializeField] private int prewarmCount = 5;
 
-        [SerializeField] private int maxSize = 30;
+        [SerializeField] private int maxSize = 5;
 
         [Tooltip("May the pool create more than it prewarmed, up to Max Size?")]
-        [SerializeField] private bool allowGrowth = true;
+        [SerializeField] private bool allowGrowth;
 
         private GenericObjectPool<LaserProjectile> _pool;
 

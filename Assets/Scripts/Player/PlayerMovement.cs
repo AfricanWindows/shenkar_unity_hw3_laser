@@ -8,15 +8,36 @@ using UnityEngine.InputSystem;
 /// It OWNS its speed: no other class writes into the field from outside. A temporary
 /// boost is asked for through SetSpeedMultiplier, so the lightning effect never has to
 /// know what the normal speed is, or remember to put it back.
+///
+/// He does not reach that speed instantly. Snapping straight to the maximum reads as a
+/// sprite being teleported rather than a character starting to walk, so the speed ramps
+/// up and brakes down at rates the designer sets. Everything else - the platform ride,
+/// the facing direction, the boost - keeps working exactly as before.
 /// </summary>
 public class PlayerMovement : MonoBehaviour, IFacing
 {
     [Tooltip("Normal walking speed, before any power up")]
     [SerializeField] private float speed = 5f;
 
+    [Header("How the speed is reached")]
+    [Tooltip("Units per second gained while a key is held. Lower = softer start. " +
+             "Time to full speed is roughly Speed / Acceleration.")]
+    [SerializeField] private float acceleration = 40f;
+
+    [Tooltip("Units per second lost when braking or turning around. Usually higher than " +
+             "Acceleration - stopping should feel sharper than starting.")]
+    [SerializeField] private float deceleration = 60f;
+
     private float speedMultiplier = 1f;
     private float facingDirection = 1f;
     private float direction;
+
+    // Mario's OWN horizontal speed, measured against the floor he stands on - not the
+    // world. Keeping it separate from the platform's speed is what lets the ramp work
+    // while riding a moving platform: he accelerates relative to the floor, exactly as
+    // he would on solid ground.
+    private float ownSpeedX;
+
     private Rigidbody2D rigid;
     private IPlatformProvider platformProvider;
 
@@ -71,22 +92,40 @@ public class PlayerMovement : MonoBehaviour, IFacing
             return;
 
         float platformSpeedX = GetPlatformSpeedX();
+        float targetOwnSpeed = direction * CurrentSpeed;
 
+        // One step of the ramp. MoveTowards never overshoots, so releasing the key lands
+        // on exactly 0 instead of jittering around it.
+        ownSpeedX = Mathf.MoveTowards(ownSpeedX, targetOwnSpeed,
+                                      ChooseRate(ownSpeedX, targetOwnSpeed) * Time.fixedDeltaTime);
+
+        // Walking ON a platform means platform speed PLUS his own steps. Standing still on
+        // one means matching its speed exactly, so he keeps the spot he is standing on -
+        // both cases fall out of the same line, because ownSpeedX is simply 0 when idle.
+        // The velocity is REWRITTEN every step, which is also why friction can no longer
+        // drag him a second time.
+        rigid.linearVelocity = new Vector2(platformSpeedX + ownSpeedX, rigid.linearVelocity.y);
+
+        // Turning the sprite stays instant. The ramp is about how fast he MOVES; making
+        // him look the wrong way for a tenth of a second just reads as broken.
         if (direction != 0f)
         {
-            // Walking ON a platform means platform speed PLUS his own steps.
-            rigid.linearVelocity = new Vector2(platformSpeedX + direction * CurrentSpeed, rigid.linearVelocity.y);
-
             facingDirection = direction > 0f ? 1f : -1f;
             transform.localScale = new Vector3(facingDirection, 1, 1);
-            return;
         }
+    }
 
-        // Standing still on a platform: match its speed exactly, so he keeps the spot
-        // he is standing on. The velocity is REWRITTEN every step, which is also why
-        // friction can no longer drag him a second time.
-        if (platformSpeedX != 0f)
-            rigid.linearVelocity = new Vector2(platformSpeedX, rigid.linearVelocity.y);
+    /// <summary>
+    /// Speeding up uses one rate, slowing down another. Turning around counts as braking
+    /// until the speed passes through zero, which is what makes a change of direction feel
+    /// like a real turn instead of a slow drift across the middle.
+    /// </summary>
+    private float ChooseRate(float current, float target)
+    {
+        bool sameWay = current == 0f || target == 0f || Mathf.Sign(current) == Mathf.Sign(target);
+        bool speedingUp = sameWay && Mathf.Abs(target) > Mathf.Abs(current);
+
+        return speedingUp ? acceleration : deceleration;
     }
 
     /// <summary>

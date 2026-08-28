@@ -105,9 +105,16 @@ namespace Game.Core
 
             if (item == null)
             {
-                if (!_allowGrowth || _totalCreated >= _maxSize)
+                // A pool with growth switched off is MEANT to run dry - that is how "five
+                // shots in the air at once" is expressed - so it says nothing and lets the
+                // caller decide what an empty pool means. Hitting maxSize while growth was
+                // allowed is different: that one is a capacity problem worth reporting.
+                if (!_allowGrowth)
+                    return null;
+
+                if (_totalCreated >= _maxSize)
                 {
-                    Debug.LogWarning("[Pool] " + typeof(T).Name + " pool exhausted (" +
+                    Debug.LogWarning("[Pool] " + typeof(T).Name + " reached its ceiling (" +
                                      _totalCreated + "/" + _maxSize + ") - nothing to hand out.");
                     return null;
                 }

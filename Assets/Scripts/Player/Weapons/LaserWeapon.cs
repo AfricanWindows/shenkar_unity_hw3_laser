@@ -40,21 +40,24 @@ namespace Game.Weapons
                 Debug.LogError("[Laser] LaserWeapon has no LaserPoolManager assigned.", this);
         }
 
-        protected override void FireInternal()
+        protected override bool FireInternal()
         {
             if (_pool == null)
-                return;
+                return false;
 
             LaserProjectile laser = _pool.Get();
 
             if (laser == null)
             {
-                Debug.LogWarning("[Laser] Pool exhausted", this);
-                return;
+                // Not a warning: with a fixed-size pool this is the ammo limit doing its
+                // job. Nothing is fired until one of the lasers in the air comes back.
+                Debug.Log("[Laser] Pool exhausted - all lasers are still in the air");
+                return false;
             }
 
             // The weapon says "go", the projectile decides how. Straight up, in this case.
             laser.Fire(_firePoint.position);
+            return true;
         }
     }
 }

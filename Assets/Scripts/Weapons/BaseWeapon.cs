@@ -93,13 +93,20 @@ namespace Game.Weapons
             if (!CanFire)
                 return;
 
-            FireInternal();
-            _lastFireTime = Time.time;
+            // Only a shot that really left the barrel starts the cooldown. Otherwise a
+            // weapon that could not fire - empty pool, no ammo - would still be punished
+            // with the full wait, and the player would be blocked for a reason that never
+            // happened.
+            if (FireInternal())
+                _lastFireTime = Time.time;
         }
         // ==================================================
 
-        /// <summary>The one step every weapon defines for itself: actually shoot.</summary>
-        protected abstract void FireInternal();
+        /// <summary>
+        /// The one step every weapon defines for itself: actually shoot.
+        /// </summary>
+        /// <returns>True if a projectile was really fired.</returns>
+        protected abstract bool FireInternal();
 
         public void Equip()
         {
