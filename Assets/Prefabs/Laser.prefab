@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2778296772097636664}
   - component: {fileID: 3364261895662012228}
   - component: {fileID: 4862652062263577255}
-  - component: {fileID: 2991668859765900201}
   - component: {fileID: 2915949689095971025}
+  - component: {fileID: 6130713014258187670}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 7a12728de5758394ca42218f739bdaa6, type: 3}
+  m_Sprite: {fileID: 1016623478, guid: b18628dfa27b3a748a5205d859a8337b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,7 +122,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &2991668859765900201
+--- !u!114 &2915949689095971025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076424071315698133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc73c2e008b22f04684dd34686964a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Projectiles.LaserProjectile
+  ignoreTag: Player
+  blockingLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  spriteRotationZ: 90
+--- !u!61 &6130713014258187670
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,28 +177,11 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.25, y: 1}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.25, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.25, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2915949689095971025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076424071315698133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc73c2e008b22f04684dd34686964a68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Projectiles.LaserProjectile
-  ignoreTag: Player
-  blockingLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  spriteRotationZ: 0

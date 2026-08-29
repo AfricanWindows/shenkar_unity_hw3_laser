@@ -18,4 +18,4 @@ MonoBehaviour:
     damage: 1
     scale: 1
     piercesEnemies: 0
-  animatorController: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: adc18b4e957a6fb4aba21db497633bfd, type: 2}
