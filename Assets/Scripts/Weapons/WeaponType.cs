@@ -12,6 +12,7 @@ namespace Game.Weapons
     {
         Fireball = 0,
         Axe = 1,
-        Laser = 2
+        Laser = 2,
+        Boomerang = 3
     }
 }

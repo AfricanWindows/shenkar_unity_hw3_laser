@@ -113,6 +113,73 @@ MonoBehaviour:
   unlockedFromStart: 0
   laserPool: {fileID: 4298709813365755450}
   firePoint: {fileID: 0}
+--- !u!1 &2136720130951452335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2547034647215635117}
+  - component: {fileID: 7941752010061735642}
+  - component: {fileID: 4828444003249811330}
+  m_Layer: 0
+  m_Name: BoomerangWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2547034647215635117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136720130951452335}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7653115962617739001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7941752010061735642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136720130951452335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71bfd98216601b740adfb21d716b6bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Weapons.BoomerangPoolManager
+  boomerangPrefab: {fileID: 4201896597222242396, guid: b27be72228745fb429bfdf32be970252, type: 3}
+  boomerangConfig: {fileID: 11400000, guid: d2ececb0db79e7d4d9f9cb34c3f8f790, type: 2}
+  container: {fileID: 0}
+  prewarmCount: 1
+  maxSize: 1
+  allowGrowth: 0
+--- !u!114 &4828444003249811330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136720130951452335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35921be92978e2446960f396bd6ef341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Weapons.BoomerangWeapon
+  cooldown: 0
+  unlockedFromStart: 0
+  boomerangPool: {fileID: 7941752010061735642}
+  firePoint: {fileID: 0}
 --- !u!1 &2221766608174617449
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +227,7 @@ Transform:
   - {fileID: 4052872072408973675}
   - {fileID: 3963144287572924018}
   - {fileID: 8686127805261781638}
+  - {fileID: 2547034647215635117}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4374668689619199194
